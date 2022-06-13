@@ -9,7 +9,9 @@
 </head>
 <body>
     <h1>About Page</h1>
+    <h3>Dzikri Syairozi</h3>
+    <p>dzikrisyairozi@gmail.com</p>
+    <img src="img/dzikri.jpg" alt="dzikri" width="200">
 
-<script src="js/script.js"></script>
 </body>
 </html>
