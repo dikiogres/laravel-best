@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,79 +31,18 @@ Route::get('/about', function () {
     ]);
 });
 
-$blog_posts = [
-    [
-        "title" => "Gabriella Natasya",
-        "author" => "Dzikri Syairozi",
-        "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-        dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum!"
-    ],
-    [
-        "title" => "Dzikri Syairozi",
-        "author" => "Gabriella Natasya",
-        "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-        dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum<3"
-    ],
-];
-
 Route::get('/blog', function () {
-    $blog_posts = [
-        [
-            "title" => "Gabriella Natasya",
-            "slug"=> "gabriella-natasya",
-            "author" => "Dzikri Syairozi",
-            "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-            dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum!"
-        ],
-        [
-            "title" => "Dzikri Syairozi",
-            "slug"=>"dzikri-syairozi",
-            "author" => "Gabriella Natasya",
-            "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-            dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum<3"
-        ],
-    ];
     return view('blog', [
         "title"=> "Blog",
-        "posts"=> $blog_posts
+        "posts"=> Post::all()
     ]);
 });
 
 //single blog post page
 
 Route::get('posts/{slug}', function($slug){
-    $blog_posts = [
-        [
-            "title" => "Gabriella Natasya",
-            "slug"=> "gabriella-natasya",
-            "author" => "Dzikri Syairozi",
-            "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-            dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum!"
-        ],
-        [
-            "title" => "Dzikri Syairozi",
-            "slug"=>"dzikri-syairozi",
-            "author" => "Gabriella Natasya",
-            "body" => "Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Eveniet iusto culpa eius numquam ut est dolor. Mollitia aspernatur,
-            dolore vero voluptatibus asperiores, ducimus a earum placeat est et nisi eum<3"
-        ],
-    ];
-
-    $new_post = [];
-    foreach($blog_posts as $post){
-        if($post["slug"] === $slug){
-            $new_post = $post;
-        }
-    }
-
     return view('post', [
         "title"=>"Post",
-        "post"=> $new_post,
+        "post"=> Post::find($slug)
     ]);
 });
