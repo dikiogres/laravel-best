@@ -12,4 +12,9 @@ class RegisterController extends Controller
             'active'=>'regeister'
         ]);
     }
+
+    public function store(){
+        return request()->all();
+    }
+
 }
