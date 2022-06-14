@@ -5,7 +5,7 @@
     <h1 class="h2">Edit Post</h1>
 </div>
 <div class="col-lg-8">
-    <form method="post" action="/dashboard/posts{{ $post->slug }}" class="mb-5">
+    <form method="post" action="/dashboard/posts/{{ $post->slug }}" class="mb-5">
       @method('put')
         @csrf
         <div class="mb-3">
@@ -50,8 +50,8 @@
             <trix-editor input="body"></trix-editor>
           </div>
 
-
-        <button type="submit" class="btn btn-primary">Update Post</button>
+        </div>
+          <button type="submit" class="btn btn-primary">Update Post</button>
       </form>
 </div>
 
